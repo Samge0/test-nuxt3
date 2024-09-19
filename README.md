@@ -593,8 +593,10 @@ yarn run dev
     ```vue
     <nuxt-icon name="test" class="text-[100px]" filled/>
     ```
+    ![image](https://github.com/user-attachments/assets/0cdf4684-f589-40c9-8b1f-9916e0d167bf)
     
 - 备注说明
-
-    需要在 svg中使用`fill="currentColor"` + nuxt-icon中配置`filled` 才能使用svg原始颜色，否则svg的颜色值会被父级的颜色配置覆盖
+    - [阿里巴巴矢量图标库](https://www.iconfont.cn/)
+    - 需要在 svg中使用`fill="currentColor"` + nuxt-icon中配置`filled` 才能使用svg原始颜色，否则svg的颜色值会被父级的颜色配置覆盖
+    
 
