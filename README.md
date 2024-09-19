@@ -12,6 +12,7 @@
 - [添加tailwindcss](#添加tailwindcss)
 - [添加pinia](#添加pinia)
 - [添加nuxt-icons](#添加nuxt-icons)
+- [添加prettier和eslint](#添加prettier和eslint)
 
 
 ### 用nvm安装node环境
@@ -598,5 +599,80 @@ yarn run dev
 - 备注说明
     - [阿里巴巴矢量图标库](https://www.iconfont.cn/)
     - 需要在 svg中使用`fill="currentColor"` + nuxt-icon中配置`filled` 才能使用svg原始颜色，否则svg的颜色值会被父级的颜色配置覆盖
+
     
+### 添加prettier和eslint
+- 添加依赖
+    ```shell
+    yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier prettier eslint-plugin-vue typescript --dev
+    ```
+
+- 在根目录新建`.eslintrc.js`、`.prettierignore`、`.prettierrc.js`
+    ```shell
+    
+    # linux下创建
+    touch .eslintrc.js
+    touch .prettierignore
+    touch .prettierrc.js
+    
+    # windows下创建
+    New-Item -Path .eslintrc.js -ItemType File
+    New-Item -Path .prettierignore -ItemType File
+    New-Item -Path .prettierrc.js -ItemType File
+    ```
+
+- 粘贴`.eslintrc.js`文件的内容：
+    ```js
+    module.exports = {
+        root: true,
+        parser: 'vue-eslint-parser',
+        parserOptions: {
+        parser: '@typescript-eslint/parser',
+        },
+        extends: ['plugin:vue/vue3-recommended', 'plugin:prettier/recommended'],
+        rules: {
+        'vue/no-v-html': 'off',
+        'vue/v-on-event-hyphenation': 0,
+        'vue/no-template-shadow': 0,
+        'vue/no-setup-props-destructure': 'off',
+        '@intlify/vue-i18n/no-html-messages': 'off',
+        'vue/multi-word-component-names': 0,
+        },
+    };
+    ```
+
+- 粘贴`.prettierignore`文件的内容：
+    ```text
+    /dist
+    /node_modules
+    *.yml
+    *.yaml
+    tsconfig.json
+    *.svg
+    *.png
+    *.jpg
+    *.jpeg
+    *.scss
+    *.gif
+    *.webp
+    *.ttf
+    index.html
+    *.md
+    ```
+
+- 粘贴`.prettierrc.js`文件的内容：
+    ```js
+    module.exports = {
+        singleQuote: true, // 使用单引号代替双引号
+        printWidth: 200, // 超过最大值换行
+        semi: false, // 结尾不使用分号
+        useTabs: true, // 缩进使用 tab，不使用空格
+        tabWidth: 4, // tab 样式宽度
+        bracketSpacing: true, // 对象数组，文字间加空格 {a: 1} => { a: 1 }
+        arrowParens: 'avoid', // 如果可以，自动去除括号 (x) => x 变为 x => x
+        proseWrap: 'preserve', // 保持原样
+        htmlWhitespaceSensitivity: 'ignore', // 忽略 HTML 空格敏感度
+        trailingComma: 'all', // 尾随逗号
+    };
+    ```
 
