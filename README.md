@@ -388,3 +388,4 @@ yarn run dev
         @import '../assets/css/common.scss';
     </style>
     ```
+    ![image](https://github.com/user-attachments/assets/88edf0e7-0903-420f-8179-e4ed616e29d4)
