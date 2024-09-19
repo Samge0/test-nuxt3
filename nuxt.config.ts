@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     
     '@element-plus/nuxt',
     '@pinia/nuxt',
+    'nuxt-icons',
   ],
   vite: {
     server: {

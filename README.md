@@ -11,6 +11,7 @@
 - [添加autoprefixer](#添加autoprefixer)
 - [添加tailwindcss](#添加tailwindcss)
 - [添加pinia](#添加pinia)
+- [添加nuxt-icons](#添加nuxt-icons)
 
 
 ### 用nvm安装node环境
@@ -547,4 +548,53 @@ yarn run dev
     ![image](https://github.com/user-attachments/assets/909f783c-65be-4682-9ebd-aaa7f2641eb7)
     ![image](https://github.com/user-attachments/assets/5e51e490-32cc-4b32-aaf6-275f06ca8eb8)
 
+    
+### 添加nuxt-icons
+- 添加依赖
+    ```shell
+    yarn add nuxt-icons
+    ```
+
+- 更新 `nuxt.config.ts` 中配置（在`modules`中追加`nuxt-icons`）
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        modules:[
+            // ... other configs
+            'nuxt-icons',
+        ],
+    })
+    ```
+
+- 新建`assets/icons/test.svg`图标文件用于测试图标的加载
+    ```shell
+    mkdir assets/icons
+    
+    # linux下创建
+    touch assets/icons/test.svg
+    
+    # windows下创建
+    New-Item -Path assets/icons/test.svg -ItemType File
+    ```
+
+- 粘贴`assets/icons/test.svg`文件的内容：
+    ```xml
+    <?xml version="1.0" standalone="no"?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1726725370708"
+        class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="891"
+        xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+        <path
+            d="M512 85.504c235.52 0 426.496 190.976 426.496 426.496S747.52 938.496 512 938.496 85.504 747.52 85.504 512 276.48 85.504 512 85.504z m0 84.992c-188.416 0-341.504 152.576-341.504 341.504s152.576 341.504 341.504 341.504c188.416 0 341.504-153.088 341.504-341.504 0-188.416-153.088-341.504-341.504-341.504z m-40.448 156.672l121.856 369.664H509.44l-27.136-89.6H361.984l-27.648 89.6H256l122.368-369.664h93.184z m256 0v369.664h-78.336V327.168h78.336zM424.448 402.944h-3.584L377.344 547.84h90.112l-43.008-144.896z"
+            p-id="892" fill="#1296db" fill="currentColor"></path>
+    </svg>
+    ```
+
+- 在`pages/index.vue`中引入`nuxt-icon`控件
+    ```vue
+    <nuxt-icon name="test" class="text-[100px]" filled/>
+    ```
+    
+- 备注说明
+
+    需要在 svg中使用`fill="currentColor"` + nuxt-icon中配置`filled` 才能使用svg原始颜色，否则svg的颜色值会被父级的颜色配置覆盖
 

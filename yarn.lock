@@ -893,7 +893,7 @@
     which "^3.0.1"
     ws "^8.18.0"
 
-"@nuxt/kit@3.13.2", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.9.0":
+"@nuxt/kit@3.13.2", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.9.0":
   version "3.13.2"
   resolved "https://registry.npmmirror.com/@nuxt/kit/-/kit-3.13.2.tgz#4c019a87e08c33ec14d1059497ba40568b82bfed"
   integrity sha512-KvRw21zU//wdz25IeE1E5m/aFSzhJloBRAQtv+evcFeZvuroIxpIQuUqhbzuwznaUwpiWbmwlcsp5uOWmi4vwA==
@@ -3804,6 +3804,13 @@ nuxi@^3.13.2:
   integrity sha512-yAgpxBcIB2/DWL7dWRZOQa5ULLZQ4AWgYdqtUDbeOZ3KxmY/+fqm8/UJuU7QK81JrccNaZeSI+GLe5BY7RR3cQ==
   optionalDependencies:
     fsevents "~2.3.3"
+
+nuxt-icons@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.npmmirror.com/nuxt-icons/-/nuxt-icons-3.2.1.tgz#a70456e8a310c4a46f43dcb9b113085158205d77"
+  integrity sha512-trvAFq9oWYwWEQ0qZDHVxvLK+TwOdFnoXYOXQvN1CRUlp1DBJdxC8vXO3mED2Kb+Suag+bpWLC6eXGrRwhfffQ==
+  dependencies:
+    "@nuxt/kit" "^3.0.0"
 
 nuxt@^3.13.0:
   version "3.13.2"

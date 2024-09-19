@@ -15,6 +15,7 @@
     "@pinia/nuxt": "^0.5.4",
     "element-plus": "^2.8.3",
     "nuxt": "^3.13.0",
+    "nuxt-icons": "^3.2.1",
     "pinia": "^2.2.2",
     "pinia-plugin-persist": "^1.0.0",
     "vue": "latest",
