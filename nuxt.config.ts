@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     },
     
     '@element-plus/nuxt',
- ],
+  ],
   vite: {
     server: {
       hmr: true, // 启用热模块替换
@@ -40,5 +40,12 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
-  }
+  },
+
+  postcss: {
+    plugins:{
+      // 自动添加浏览器前缀
+      autoprefixer: {}
+    }
+  },
 })

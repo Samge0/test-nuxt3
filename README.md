@@ -8,6 +8,7 @@
 - [添加UI框架Vuetify](#添加UI框架Vuetify)
 - [添加element-plus](#添加element-plus)
 - [添加scss](#添加scss)
+- [添加autoprefixer](#添加autoprefixer)
 
 
 ### 用nvm安装node环境
@@ -284,3 +285,23 @@ yarn run dev
     ```
 ![image](https://github.com/user-attachments/assets/7409158c-8864-4de1-b84c-6e4c889f218f)
 
+
+### 添加autoprefixer
+- 添加依赖
+    ```shell
+    yarn add autoprefixer --dev
+    ```
+
+- 更新 `nuxt.config.ts` 中配置
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        postcss: {
+            plugins:{
+                // 自动添加浏览器前缀
+                autoprefixer: {}
+            }
+        },
+        // ... other configs
+    })
+    ```
