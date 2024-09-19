@@ -9,6 +9,7 @@
 - [添加element-plus](#添加element-plus)
 - [添加scss](#添加scss)
 - [添加autoprefixer](#添加autoprefixer)
+- [添加tailwindcss](#添加tailwindcss)
 
 
 ### 用nvm安装node环境
@@ -304,4 +305,86 @@ yarn run dev
         },
         // ... other configs
     })
+    ```
+    
+    
+### 添加tailwindcss
+- 添加依赖
+    ```shell
+    yarn add tailwindcss --dev
+    ```
+
+- 更新 `nuxt.config.ts` 中配置
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        postcss: {
+            plugins:{
+                // ... other configs
+                // 预配置的tailwindcss，用于快速利用已有的组合css
+                tailwindcss: {},
+            }
+        },
+        // ... other configs
+    })
+    ```
+
+- 在项目根目录创建 `tailwind.config.js`
+    ```shell
+    # linux下创建
+    touch tailwind.config.js
+    
+    # windows下创建
+    New-Item -Path tailwind.config.js -ItemType File
+    ```
+    
+- 粘贴`tailwind.config.js`文件的内容：
+    ```js
+    module.exports = {
+        content: [
+            "./components/**/*.{js,vue,ts}",
+            "./layouts/**/*.vue",
+            "./pages/**/*.vue",
+            "./plugins/**/*.{js,ts}",
+            "./nuxt.config.{js,ts}",
+            "./app.vue",
+        ],
+        theme: {
+            extend: {
+            colors: {
+                dark: "#000",
+            },
+            screens: {},
+            },
+        },
+        plugins: [],
+    };
+    ```
+    
+- 修改 `common.scss` 支持 `tailwind`
+    ```scss
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    .main {
+        color: blue;
+    }
+    ```
+
+- 在`pages/index.vue`中引入`tailwind`的样式进行测试
+    ```vue
+    <template>
+        <div class="main">
+            <h1>Hello World</h1>
+            <div class="bg-blue-400 text-white pt-4 pr-4 pb-4 pl-0">测试tailwindcss样式</div>
+            <nuxt-link to="/test" class="main">test page</nuxt-link> |
+        </div>
+    </template>
+
+    <script lang="ts" setup></script>
+
+    <style scoped>
+        @import '../assets/css/common.scss';
+    </style>
     ```

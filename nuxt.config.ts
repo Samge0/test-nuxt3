@@ -45,7 +45,9 @@ export default defineNuxtConfig({
   postcss: {
     plugins:{
       // 自动添加浏览器前缀
-      autoprefixer: {}
+      autoprefixer: {},
+      // 预配置的tailwindcss，用于快速利用已有的组合css
+      tailwindcss: {},
     }
   },
 })
