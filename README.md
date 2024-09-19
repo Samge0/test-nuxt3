@@ -282,3 +282,5 @@ yarn run dev
         // ... other configs
     })
     ```
+![image](https://github.com/user-attachments/assets/7409158c-8864-4de1-b84c-6e4c889f218f)
+
