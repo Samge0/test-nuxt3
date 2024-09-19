@@ -47,6 +47,7 @@ yarn run dev
 
 
 ### 添加UI框架Vuetify
+
 [点击查看Vuetify的github仓库>>](https://github.com/vuetifyjs/vuetify)
 
 - 添加依赖
@@ -124,7 +125,8 @@ yarn run dev
     ```
 
 - 创建 测试页面
-项目根目录创建一个`pages`文件夹，然后创建一个名为`index.vue`跟`test.vue`的文件，测试vuetify的组件是否正常
+  
+    项目根目录创建一个`pages`文件夹，然后创建一个名为`index.vue`跟`test.vue`的文件，测试vuetify的组件是否正常
     ```shell
     mkdir pages
     
@@ -178,5 +180,9 @@ yarn run dev
     ```
   
 - 修改完毕后如果不能正常渲染，可重新运行`yarn run dev`
+
+    ![image](https://github.com/user-attachments/assets/d52534e4-e98f-432b-bb54-7cf5db8a578c)
+    ![image](https://github.com/user-attachments/assets/f861aad0-9514-42ac-8edd-6c400af56827)
+
 
     
