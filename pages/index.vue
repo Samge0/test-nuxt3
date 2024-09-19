@@ -7,4 +7,6 @@
 
 <script lang="ts" setup></script>
 
-<style scoped></style>
+<style scoped>
+    @import '../assets/css/common.scss';
+</style>

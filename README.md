@@ -7,6 +7,7 @@
 - [创建nuxt项目](#创建nuxt项目)
 - [添加UI框架Vuetify](#添加UI框架Vuetify)
 - [添加element-plus](#添加element-plus)
+- [添加scss](#添加scss)
 
 
 ### 用nvm安装node环境
@@ -235,3 +236,49 @@ yarn run dev
     </script>
     ```
     ![image](https://github.com/user-attachments/assets/9351c51e-bb88-4fc0-b650-eb75f9dcac69)
+
+
+### 添加scss
+- 添加依赖
+    ```shell
+    yarn add sass --dev
+    ```
+
+- 新建`assets/css`目录并添加一个`common.scss`文件
+    ```shell
+    mkdir assets/css
+    
+    # linux下创建
+    touch assets/css/common.scss
+    
+    # windows下创建
+    New-Item -Path assets/css/common.scss -ItemType File
+    ```
+
+- 在`pages/index.vue`中引入`common.scss`文件
+    ```vue
+    <template>
+        <div class="main">
+            <h1>Hello World</h1>
+            <nuxt-link to="/test" class="main">test page</nuxt-link> |
+        </div>
+    </template>
+
+    <script lang="ts" setup></script>
+
+    <style scoped>
+        @import '../assets/css/common.scss';
+    </style>
+    ```
+    
+- 如果需要全局引入，则需要更新 `nuxt.config.ts` 中配置（在`css`中追加`common.scss`）
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        css: [
+            // ... other configs
+            '@/assets/css/common.scss',
+        ],
+        // ... other configs
+    })
+    ```

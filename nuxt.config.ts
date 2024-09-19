@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@/node_modules/vuetify/lib/styles/main.css',
     '@/node_modules/element-plus/dist/index.css',
     '@/node_modules/element-plus/theme-chalk/display.css',
+    '@/assets/css/common.scss',
   ],
   build: {
     transpile: ['vuetify'],
