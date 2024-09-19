@@ -3,6 +3,8 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
  
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-19',
+  dev: true, // 开发模式开启
+  ssr: false, // 关闭服务器端渲染
   devtools: { enabled: true },
   css: [
     '@/node_modules/vuetify/lib/styles/main.css',
@@ -23,6 +25,12 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
  ],
   vite: {
+    server: {
+      hmr: true, // 启用热模块替换
+      watch: {
+        usePolling: true, // 使用轮询监视文件变化
+      },
+    },
     define: {
       'process.env.DEBUG': false,
     },
