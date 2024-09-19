@@ -685,6 +685,8 @@ yarn run dev
     ```shell
     npx nuxi@latest module add i18n
     ```
+    执行后可能会遇到下图那样的错误提示，不需要在意，一会手动在 `nuxt.config.ts` 中追加 `i18n` 的配置即可
+    ![image](https://github.com/user-attachments/assets/b67a3543-f3d8-4ed6-9118-d1923b6f5c0b)
 
 - 更新 `nuxt.config.ts` 中配置（在`modules`中追加`@nuxtjs/i18n`）
     ```text
@@ -789,3 +791,6 @@ yarn run dev
     ```vue
     <nuxt-link to="/testlang" class="main">testlang page</nuxt-link>
     ```
+    ![image](https://github.com/user-attachments/assets/c2881a91-948a-4eb4-986c-7ff35557f185)
+    ![image](https://github.com/user-attachments/assets/3d8867d8-ec68-4088-bfba-f5e2ecbfe59f)
+
