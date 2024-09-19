@@ -6,6 +6,7 @@
 - [用nvm安装node环境+安装yarn](#用nvm安装node环境)
 - [创建nuxt项目](#创建nuxt项目)
 - [添加UI框架Vuetify](#添加UI框架Vuetify)
+- [添加element-plus](#添加element-plus)
 
 
 ### 用nvm安装node环境
@@ -185,4 +186,51 @@ yarn run dev
     ![image](https://github.com/user-attachments/assets/f861aad0-9514-42ac-8edd-6c400af56827)
 
 
+### 添加element-plus
+
+可选，[点击查看element-plus的github仓库>>](https://github.com/element-plus/element-plus)
+
+- 添加依赖
+    ```shell
+    yarn add element-plus @element-plus/nuxt
+    ```
     
+- 更新 `nuxt.config.ts` 中配置（在`css`跟`modules`中追加`element-plus`的配置）
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        css: [
+            // ... other configs
+            '@/node_modules/element-plus/dist/index.css',
+            '@/node_modules/element-plus/theme-chalk/display.css',
+        ],
+        // ... other configs
+        modules:[
+            // ... other configs
+            '@element-plus/nuxt',
+        ],
+    })
+    ```
+    
+- 在`test.vue`文件中增加`element-plus`的控件测试：
+    ```vue
+    <template>
+        <div>
+            <el-button type="primary" @click="showElementPlusToast">Element Plus 按钮</el-button><br/><br/>
+            <v-btn color="success" @click="showVuetifyToast">Vuetify 按钮</v-btn>
+        </div>
+    </template>
+
+    <script>
+        export default {
+            methods: {
+                showElementPlusToast() {
+                    console.log("Element Plus 按钮 被点击了！");
+                },
+                showVuetifyToast() {
+                    console.log("Vuetify 按钮 被点击了！");
+                },
+            },
+        };
+    </script>
+    ```

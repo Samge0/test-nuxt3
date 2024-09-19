@@ -6,17 +6,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
     '@/node_modules/vuetify/lib/styles/main.css',
+    '@/node_modules/element-plus/dist/index.css',
+    '@/node_modules/element-plus/theme-chalk/display.css',
   ],
   build: {
     transpile: ['vuetify'],
   },
-   modules:[
+  modules:[
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
+    
+    '@element-plus/nuxt',
  ],
   vite: {
     define: {
