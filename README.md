@@ -35,3 +35,11 @@
 ```shell
 npx nuxi@latest init test-nuxt3
 ```
+![image](https://github.com/user-attachments/assets/f5e6f8e6-e045-4325-a010-d68beae8e6fa)
+
+运行
+```shell
+yarn run dev
+```
+![image](https://github.com/user-attachments/assets/7be4a5ac-1517-45f6-b9c0-dcc981372ab4)
+
