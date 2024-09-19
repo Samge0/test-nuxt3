@@ -13,6 +13,7 @@
 - [添加pinia](#添加pinia)
 - [添加nuxt-icons](#添加nuxt-icons)
 - [添加prettier和eslint](#添加prettier和eslint)
+- [添加vue-i18n多语言](#添加vue-i18n多语言)
 
 
 ### 用nvm安装node环境
@@ -676,3 +677,115 @@ yarn run dev
     };
     ```
 
+    
+### 添加vue-i18n多语言
+
+[点击查看 i18n.nuxtjs 文档>>](https://i18n.nuxtjs.org/docs/getting-started/)
+- 添加依赖
+    ```shell
+    npx nuxi@latest module add i18n
+    ```
+
+- 更新 `nuxt.config.ts` 中配置（在`modules`中追加`@nuxtjs/i18n`）
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        modules:[
+            // ... other configs
+            '@nuxtjs/i18n',
+        ],
+        i18n: {
+            vueI18n: './i18n.config.ts'
+        },
+        // ... other configs
+    })
+    ```
+
+- 在项目根目录新建`i18n.config.ts`文件，用于配置多语言，并添加默认语言
+    ```shell
+    
+    # linux下创建
+    touch i18n.config.ts
+    
+    # windows下创建
+    New-Item -Path i18n.config.ts -ItemType File
+    ```
+
+- 粘贴`i18n.config.ts`文件的内容：
+    ```ts
+    import en from "./assets/lang/en_us.json";
+    import zh from "./assets/lang/zh_cn.json";
+
+    export default defineI18nConfig(() => ({
+        legacy: false,
+        locale: 'en',
+        messages: {
+        en: en,
+        zh: zh
+        }
+    }))
+    ```
+
+- 创建`assets/lang/en_us.json`和`assets/lang/zh_cn.json`文件，用于配置多语言
+    ```shell
+    
+    # 创建目录
+    mkdir assets/lang
+
+    # linux下创建
+    touch assets/lang/en_us.json
+    touch assets/lang/zh_cn.json
+    
+    # windows下创建
+    New-Item -Path assets/lang/en_us.json -ItemType File
+    New-Item -Path assets/lang/zh_cn.json -ItemType File
+    ```
+
+- 粘贴`assets/lang/en_us.json`文件的内容：
+    ```json
+    {
+        "name": "please input name"
+    }
+
+- 粘贴`assets/lang/zh_cn.json`文件的内容：
+    ```json
+    {
+        "name": "please input name"
+    }
+    ```
+
+- 创建`pages/testlang.vue`页面文件，用于测试多语言效果
+    ```shell
+    
+    # 创建目录
+    mkdir pages
+
+    # linux下创建
+    touch pages/testlang.vue
+    
+    # windows下创建
+    New-Item -Path pages/testlang.vue -ItemType File
+    ```
+
+- 粘贴`pages/testlang.vue`文件的内容：
+    ```json
+    <script setup>
+        const { locale, setLocale } = useI18n()
+    </script>
+
+    <template>
+        <div class="p-4 bg-blue-300">
+            <p class="text-2xl mb-4">语言切换测试：</p>
+
+            <v-btn color="info" @click="setLocale('en')" class="mr-2">English</v-btn> | 
+            <v-btn color="success" @click="setLocale('zh')" class="ml-2">中文</v-btn>
+
+            <p class="mt-4">文本结果：<span class="text-red-600">{{ $t('name') }}</span> ({{ locale }})</p>
+        </div>
+    </template>
+    ```
+
+- 在`pages/index.vue`文件中追加`testlang`页面的入口：
+    ```vue
+    <nuxt-link to="/testlang" class="main">testlang page</nuxt-link>
+    ```

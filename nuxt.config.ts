@@ -26,7 +26,11 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-icons',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+      vueI18n: './i18n.config.ts'
+  },
   vite: {
     server: {
       hmr: true, // 启用热模块替换
