@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     },
     
     '@element-plus/nuxt',
+    '@pinia/nuxt',
   ],
   vite: {
     server: {

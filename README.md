@@ -10,6 +10,7 @@
 - [添加scss](#添加scss)
 - [添加autoprefixer](#添加autoprefixer)
 - [添加tailwindcss](#添加tailwindcss)
+- [添加pinia](#添加pinia)
 
 
 ### 用nvm安装node环境
@@ -389,3 +390,157 @@ yarn run dev
     </style>
     ```
     ![image](https://github.com/user-attachments/assets/88edf0e7-0903-420f-8179-e4ed616e29d4)
+
+    
+### 添加pinia
+- 添加依赖
+    ```shell
+    yarn add pinia
+    yarn add @pinia/nuxt
+    yarn add pinia-plugin-persist
+    ```
+
+- 更新 `nuxt.config.ts` 中配置（在`modules`中追加`@pinia/nuxt`）
+    ```text
+    export default defineNuxtConfig({
+        // ... other configs
+        modules:[
+            // ... other configs
+            '@pinia/nuxt',
+        ],
+    })
+    ```
+
+- 新建`store`目录并添加一个`index.ts`跟`user.ts`测试文件
+    ```shell
+    mkdir store
+    
+    # linux下创建
+    touch store/index.ts
+    touch store/user.ts
+    
+    # windows下创建
+    New-Item -Path store/index.ts -ItemType File
+    New-Item -Path store/user.ts -ItemType File
+    ```
+    
+- 粘贴`store/index.ts`文件的内容：
+    ```ts
+    import { createPinia} from 'pinia'
+    import piniaPluginPersist from 'pinia-plugin-persist';
+    
+    // 创建
+    const pinia = createPinia();
+    pinia.use(piniaPluginPersist);
+    
+    // 导出
+    export default pinia;
+    ```
+    
+- 粘贴`store/user.ts`文件的内容：
+    ```ts
+    import {acceptHMRUpdate, defineStore} from "pinia";
+ 
+    export const useStore =  defineStore("user", {
+        state: () => {
+            return {
+                token: localStorage.getItem('token') || "",
+                name: localStorage.getItem('name') || '未登录'
+            };
+        },
+        actions: {
+            // 用户登录
+            login(data: any) {
+                this.setToken(data);
+            },
+            // 写入名字
+            setName(data: any) {
+                this.name = data;
+                localStorage.setItem('name', data);
+            },
+            // 单独更新或写入token
+            setToken(data: any) {
+                this.token = data;
+                localStorage.setItem('token', data);
+            },
+            // 用户登出
+            logout() {
+                this.name = '未登录'
+                this.token = '';
+                localStorage.removeItem('token');
+                localStorage.removeItem('name');
+            }
+        },
+    });
+    
+    if (import.meta.hot) {
+        import.meta.hot.accept(acceptHMRUpdate(useStore, import.meta.hot))
+    }
+    ```
+
+- 新建`pages/teststore.vue`用于测试`pinia`
+    ```shell
+    mkdir pages
+    
+    # linux下创建
+    touch pages/teststore.vue
+    
+    # windows下创建
+    New-Item -Path pages/teststore.vue -ItemType File
+    ```
+    
+- 粘贴`pages/teststore.vue`文件的内容：
+    ```vue
+    <template>
+        <div class="p-4 bg-blue-200">
+
+            <div class="flex items-center space-x-0">
+                <el-button @click="changeName" type="primary" class="mr-2" style="width: 100%; max-width: 100px;">改变名称</el-button>
+                <span class="text-red-500">{{ store.name }}</span>
+            </div>
+
+            <div class="flex items-center space-x-0 mt-4">
+                <el-button @click="setToken" type="primary" class="mr-2" style="width: 100%; max-width: 100px;">登录</el-button>
+                <span class="text-red-500">{{ store.token }}</span>
+            </div>
+
+        </div>
+    </template>
+
+    <script lang="ts" setup>
+        import { useStore } from '../store/user'
+        const store = useStore()
+
+        function changeName(): void {
+            let name = `New Name ${Math.random().toString(36).substr(2, 9)}`
+            store.setName(name)
+        }
+
+        function setToken(): void {
+            let token = `jwt-${Math.random().toString(36).substr(2, 9)}`
+            store.setToken(token)
+        }
+
+    </script>
+
+    <style scoped>
+    </style>
+    ```
+
+- 在`pages/index.vue`中引入`teststore的页面路由`
+    ```vue
+    <template>
+        <div class="main">
+            <h1>Hello World</h1>
+            <div class="bg-blue-400 text-white pt-4 pr-4 pb-4 pl-0">测试tailwindcss样式</div>
+            <nuxt-link to="/test" class="main">test page</nuxt-link> | 
+            <nuxt-link to="/teststore" class="main">teststore page</nuxt-link> | 
+        </div>
+    </template>
+
+    <script lang="ts" setup></script>
+
+    <style scoped>
+        @import '../assets/css/common.scss';
+    </style>
+    ```
